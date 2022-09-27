@@ -1,8 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using Project.Service.Models;
 
-namespace Project.MVC.Data
+namespace Project.Service.Models
 {
     public class ApplicationDbContext : IdentityDbContext
     {
@@ -11,7 +10,7 @@ namespace Project.MVC.Data
         {
         }
 
-        DbSet<VehicleMake> VehicleMakes { get; set; }
-        DbSet<VehicleModel> VehicleModels { get; set; }
+        public DbSet<VehicleMake> VehicleMakes { get; set; }
+        public DbSet<VehicleModel> VehicleModels { get; set; }
     }
 }

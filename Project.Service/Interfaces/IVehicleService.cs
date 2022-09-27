@@ -9,21 +9,21 @@ namespace Project.Service.Interfaces
 {
     public interface IVehicleService
     {
-        VehicleMake CreateVehicleMake(VehicleMake new_vehicleMake);
-        List<VehicleMake> ReadVehicleMakes();
-        VehicleMake DetailsVehicleMake(int id);
-        VehicleMake DeleteVehicleMake(int id);
-        VehicleMake UpdateVehicleMake(VehicleMake new_vehicleMake);
-        VehicleMake CreateVehicleModel(VehicleModel new_vehicleModel);
-        List<VehicleModel> ReadVehicleModels();
-        VehicleModel DetailsVehicleModel(int id);
-        VehicleModel DeleteVehicleModel(int id);
-        VehicleModel UpdateVehicleModel(VehicleModel new_vehicleModel);
-        List<VehicleMake> FilterVehicleMake(List<string>? filter_words, List<VehicleMake> vehicleMakes);
-        List<VehicleModel> FilterVehicleModel(List<string>? filter_words, List<VehicleModel> vehicleModels);
-        List<VehicleMake> SortVehicleMake(bool? descending, List<VehicleMake> vehicleMakes);
-        List<VehicleModel> SortVehcleModel(bool? descending, List<VehicleModel> vehicleModels);
-        List<VehicleMake> PageVahicleMake(int page, List<VehicleMake> vehicleMakes);
-        List<VehicleModel> PageVahicleModel(int page, List<VehicleModel> vehicleModels);
+        Task<VehicleMake> CreateVehicleMake(VehicleMake new_vehicleMake);
+        IEnumerable<VehicleMake> ReadVehicleMakes();
+        Task<VehicleMake> DetailsVehicleMake(int id);
+        Task<VehicleMake> DeleteVehicleMake(int id);
+        Task<VehicleMake> UpdateVehicleMake(VehicleMake new_vehicleMake);
+        Task<VehicleModel> CreateVehicleModel(VehicleModel new_vehicleModel);
+        IEnumerable<VehicleModel> ReadVehicleModels();
+        Task<VehicleModel> DetailsVehicleModel(int id);
+        Task<VehicleModel> DeleteVehicleModel(int id);
+        Task<VehicleModel> UpdateVehicleModel(VehicleModel new_vehicleModel);
+        List<VehicleMake> FilterVehicleMake(List<string> filter_words, List<VehicleMake> vehicleMakes);
+        List<VehicleModel> FilterVehicleModel(List<string> filter_words, List<VehicleModel> vehicleModels);
+        List<VehicleMake> SortVehicleMake(List<VehicleMake> vehicleMakes, bool? descending);
+        List<VehicleModel> SortVehcleModel(List<VehicleModel> vehicleModels, bool? descending);
+        List<VehicleMake> PageVahicleMake(int page, int perpage, List<VehicleMake> vehicleMakes);
+        List<VehicleModel> PageVahicleModel(int page, int perpage, List<VehicleModel> vehicleModels);
     }
 }

@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Ninject;
+using Project.Service.Classes;
 using Project.MVC.Models;
 using System.Diagnostics;
 

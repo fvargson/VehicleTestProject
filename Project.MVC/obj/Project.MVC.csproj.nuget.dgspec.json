@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Joka\\source\\repos\\VehicleTestProject\\Project.MVC\\Project.MVC.csproj": {}
+    "C:\\Users\\Joka\\Source\\Repos\\fvargson\\VehicleTestProject\\Project.MVC\\Project.MVC.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Joka\\source\\repos\\VehicleTestProject\\Project.MVC\\Project.MVC.csproj": {
+    "C:\\Users\\Joka\\Source\\Repos\\fvargson\\VehicleTestProject\\Project.MVC\\Project.MVC.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Joka\\source\\repos\\VehicleTestProject\\Project.MVC\\Project.MVC.csproj",
+        "projectUniqueName": "C:\\Users\\Joka\\Source\\Repos\\fvargson\\VehicleTestProject\\Project.MVC\\Project.MVC.csproj",
         "projectName": "Project.MVC",
-        "projectPath": "C:\\Users\\Joka\\source\\repos\\VehicleTestProject\\Project.MVC\\Project.MVC.csproj",
+        "projectPath": "C:\\Users\\Joka\\Source\\Repos\\fvargson\\VehicleTestProject\\Project.MVC\\Project.MVC.csproj",
         "packagesPath": "C:\\Users\\Joka\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Joka\\source\\repos\\VehicleTestProject\\Project.MVC\\obj\\",
+        "outputPath": "C:\\Users\\Joka\\Source\\Repos\\fvargson\\VehicleTestProject\\Project.MVC\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Joka\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -28,8 +28,8 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "C:\\Users\\Joka\\source\\repos\\VehicleTestProject\\Project.Service\\Project.Service.csproj": {
-                "projectPath": "C:\\Users\\Joka\\source\\repos\\VehicleTestProject\\Project.Service\\Project.Service.csproj"
+              "C:\\Users\\Joka\\Source\\Repos\\fvargson\\VehicleTestProject\\Project.Service\\Project.Service.csproj": {
+                "projectPath": "C:\\Users\\Joka\\Source\\Repos\\fvargson\\VehicleTestProject\\Project.Service\\Project.Service.csproj"
               }
             }
           }
@@ -44,17 +44,25 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "dependencies": {
+            "AutoMapper": {
+              "target": "Package",
+              "version": "[11.0.1, )"
+            },
+            "AutoMapper.Extensions.Microsoft.DependencyInjection": {
+              "target": "Package",
+              "version": "[11.0.0, )"
+            },
             "Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore": {
               "target": "Package",
-              "version": "[6.0.8, )"
+              "version": "[6.0.9, )"
             },
             "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
               "target": "Package",
-              "version": "[6.0.8, )"
+              "version": "[6.0.9, )"
             },
             "Microsoft.AspNetCore.Identity.UI": {
               "target": "Package",
-              "version": "[6.0.8, )"
+              "version": "[6.0.9, )"
             },
             "Microsoft.EntityFrameworkCore.Design": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
@@ -64,11 +72,17 @@
             },
             "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",
-              "version": "[6.0.8, )"
+              "version": "[6.0.9, )"
             },
             "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
               "target": "Package",
-              "version": "[6.0.8, )"
+              "version": "[6.0.9, )"
+            },
+            "Ninject": {
+              "target": "Package",
+              "version": "[3.3.6, )"
             }
           },
           "imports": [
@@ -94,14 +108,14 @@
         }
       }
     },
-    "C:\\Users\\Joka\\source\\repos\\VehicleTestProject\\Project.Service\\Project.Service.csproj": {
+    "C:\\Users\\Joka\\Source\\Repos\\fvargson\\VehicleTestProject\\Project.Service\\Project.Service.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Joka\\source\\repos\\VehicleTestProject\\Project.Service\\Project.Service.csproj",
+        "projectUniqueName": "C:\\Users\\Joka\\Source\\Repos\\fvargson\\VehicleTestProject\\Project.Service\\Project.Service.csproj",
         "projectName": "Project.Service",
-        "projectPath": "C:\\Users\\Joka\\source\\repos\\VehicleTestProject\\Project.Service\\Project.Service.csproj",
+        "projectPath": "C:\\Users\\Joka\\Source\\Repos\\fvargson\\VehicleTestProject\\Project.Service\\Project.Service.csproj",
         "packagesPath": "C:\\Users\\Joka\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Joka\\source\\repos\\VehicleTestProject\\Project.Service\\obj\\",
+        "outputPath": "C:\\Users\\Joka\\Source\\Repos\\fvargson\\VehicleTestProject\\Project.Service\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Joka\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -130,11 +144,45 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "dependencies": {
+            "AutoMapper": {
+              "target": "Package",
+              "version": "[11.0.1, )"
+            },
+            "AutoMapper.Extensions.Microsoft.DependencyInjection": {
+              "target": "Package",
+              "version": "[11.0.0, )"
+            },
+            "Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[6.0.9, )"
+            },
+            "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[6.0.9, )"
+            },
+            "Microsoft.AspNetCore.Identity.UI": {
+              "target": "Package",
+              "version": "[6.0.9, )"
+            },
             "Microsoft.EntityFrameworkCore.Design": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
               "target": "Package",
               "version": "[6.0.9, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[6.0.9, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[6.0.9, )"
+            },
+            "Ninject": {
+              "target": "Package",
+              "version": "[3.3.6, )"
             }
           },
           "imports": [

@@ -1,8 +1,8 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using Project.MVC.Data;
-using Project.Service.Classes;
-using Project.Service.Interfaces;
+using System.Reflection;
+using Project.Service.Models;
+using Project.MVC.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,7 +16,9 @@ builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.Requ
     .AddEntityFrameworkStores<ApplicationDbContext>();
 builder.Services.AddControllersWithViews();
 
-builder.Services.AddScoped<IVehicleService, VehicleService>();
+NinjectDI.Initialize();
+
+builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
 
 var app = builder.Build();
 
