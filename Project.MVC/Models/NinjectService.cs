@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Ninject.Modules;
 using Project.MVC.Controllers;
 using Project.Service.Classes;
@@ -11,7 +12,9 @@ namespace Project.MVC.Models
     {
         public override void Load()
         {
-            Bind<IVehicleService>().To<VehicleService>();
+            Bind<IVehicleModelService>().To<VehicleModelService>();
+            Bind<IVehicleMakeService>().To<VehicleMakeService>();
+            Bind<IMapper>().To<Mapper>();
         }
     }
 }

@@ -3229,11 +3229,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Joka\\Source\\Repos\\fvargson\\VehicleTestProject\\Project.Service\\Project.Service.csproj",
+      "projectUniqueName": "C:\\Users\\Joka\\source\\repos\\fvargson\\VehicleTestProject\\Project.Service\\Project.Service.csproj",
       "projectName": "Project.Service",
-      "projectPath": "C:\\Users\\Joka\\Source\\Repos\\fvargson\\VehicleTestProject\\Project.Service\\Project.Service.csproj",
+      "projectPath": "C:\\Users\\Joka\\source\\repos\\fvargson\\VehicleTestProject\\Project.Service\\Project.Service.csproj",
       "packagesPath": "C:\\Users\\Joka\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Joka\\Source\\Repos\\fvargson\\VehicleTestProject\\Project.Service\\obj\\",
+      "outputPath": "C:\\Users\\Joka\\source\\repos\\fvargson\\VehicleTestProject\\Project.Service\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Joka\\AppData\\Roaming\\NuGet\\NuGet.Config",
