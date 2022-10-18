@@ -1,4 +1,7 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -25,9 +28,24 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="Admin" asp-controller="VehicleModel" asp-action="Index">VehicleModel</a>
-                        </li>
+                        @if (SignInManager.IsSignedIn(User) && await UserManager.IsInRoleAsync(UserManager.GetUserAsync(User).Result, "Admin"))
+                        {
+                            <li>
+                                <div class="dropdown">
+                                    <a role="button" class="nav-link dropdown-toggle text-dark" id="dropdownMenuAdmin" data-bs-toggle="dropdown" aria-expanded="false">
+                                        Admin
+                                    </a>
+                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuAdmin">
+                                        <li class="nav-item">
+                                            <a class="nav-link text-dark" asp-area="Admin" asp-controller="VehicleMake" asp-action="Index">Vehicle Make</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link text-dark" asp-area="Admin" asp-controller="VehicleModel" asp-action="Index">Vehicle Model</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+                        }
                     </ul>
                     <partial name="_LoginPartial" />
                 </div>

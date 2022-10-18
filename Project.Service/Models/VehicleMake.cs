@@ -18,6 +18,5 @@ namespace Project.Service.Models
         [Required]
         [Column(TypeName = "varchar(4)")]
         public string Abrv { get; set; }
-        public ICollection<VehicleModel> VehicleModels { get; set; }
     }
 }

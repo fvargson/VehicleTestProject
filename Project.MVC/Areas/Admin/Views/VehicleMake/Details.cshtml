@@ -1,0 +1,59 @@
+@model Project.Service.Models.VehicleMake
+
+@using Project.Service.Models
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>VehicleMake</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Abrv)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Abrv)
+        </dd>
+    </dl>
+</div>
+<div>
+    <h5>VehicleModels</h5>
+    @if(((IEnumerable<VehicleModel>)ViewBag.VehicleModels).Count() == 0)
+    {
+        <p>There are no models under this make yet, create some @(Html.ActionLink("here", "Create", "VehicleModel", new { MakeId = Model.Id })).</p>
+    }
+    else
+    {
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Abrv</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach(var item in (IEnumerable<VehicleModel>)ViewBag.VehicleModels)
+                {
+                    <tr>
+                        <td>@item.Name</td>
+                        <td>@item.Abrv</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+</div>
+<div>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    <a asp-action="Index">Back to List</a>
+</div>

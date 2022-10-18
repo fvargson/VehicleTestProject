@@ -17,7 +17,7 @@ namespace Project.MVC.Data.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "6.0.9")
+                .HasAnnotation("ProductVersion", "6.0.10")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
@@ -264,12 +264,9 @@ namespace Project.MVC.Data.Migrations
                         .IsRequired()
                         .HasColumnType("varchar(50)");
 
-                    b.Property<int>("VehicleMakeId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
 
-                    b.HasIndex("VehicleMakeId");
+                    b.HasIndex("MakeId");
 
                     b.ToTable("VehicleModels");
                 });
@@ -328,17 +325,12 @@ namespace Project.MVC.Data.Migrations
             modelBuilder.Entity("Project.Service.Models.VehicleModel", b =>
                 {
                     b.HasOne("Project.Service.Models.VehicleMake", "VehicleMake")
-                        .WithMany("VehicleModels")
-                        .HasForeignKey("VehicleMakeId")
+                        .WithMany()
+                        .HasForeignKey("MakeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("VehicleMake");
-                });
-
-            modelBuilder.Entity("Project.Service.Models.VehicleMake", b =>
-                {
-                    b.Navigation("VehicleModels");
                 });
 #pragma warning restore 612, 618
         }

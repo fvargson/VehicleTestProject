@@ -5,102 +5,124 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Project.MVC.Models;
-using Project.Service.Classes;
 using Project.Service.Interfaces;
+using Project.Service.Helpers;
 using Project.Service.Models;
 
 namespace Project.MVC.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    //[Authorize("Admin")]
+    [Authorize(Roles = "Admin")]
     public class VehicleModelController : Controller
     {
         private readonly IVehicleModelService _vehicle_model_service;
         public VehicleModelController()
         {
-            _vehicle_model_service = NinjectDI.Create<VehicleModelService>();
+            _vehicle_model_service = NinjectDI.Create<IVehicleModelService>();
         }
         // GET: VehicleModel
-        public ActionResult Index()
+        [ActionName("Index")]
+        public async Task<ActionResult> IndexAsync()
         {
-            var result = _vehicle_model_service.GetVehicleModelsAsync();
+            var result = await _vehicle_model_service.GetVehicleModelsAsync();
 
-            return View(result);
+            return View("Index", result);
         }
 
         // GET: VehicleModel/Details/5
-        public ActionResult Details(int id)
+        [ActionName("Details")]
+        public async Task<ActionResult> DetailsAsync(int id)
         {
-            return View();
+            var result = await _vehicle_model_service.GetVehicleModelAsync(id);
+            var make = await NinjectDI.Create<IVehicleMakeService>().GetVehicleMakeAsync(result.MakeId);
+            ViewBag.Make = make.Name;
+
+            return View("Details", result);
         }
 
         // GET: VehicleModel/Create
-        public ActionResult Create()
+        [ActionName("Create")]
+        public async Task<ActionResult> CreateAsync(int? MakeId)
         {
+            if (MakeId != null)
+            {
+                ViewBag.MakeId = MakeId.Value;
+            }
+            ViewBag.VehicleMakes = await NinjectDI.Create<IVehicleMakeService>().GetVehicleMakesAsync();
+
             return View();
         }
 
         // POST: VehicleModel/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        [ActionName("Create")]
+        public async Task<ActionResult> CreateAsync(VehicleModel vehicleModel)
         {
             try
             {
-                // TODO: Add insert logic here
+                var result = await _vehicle_model_service.CreateVehicleModelAsync(vehicleModel);
 
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Index");
             }
             catch
             {
-                return View();
+                return BadRequest(StatusCodes.Status500InternalServerError);
             }
         }
 
         // GET: VehicleModel/Edit/5
-        public ActionResult Edit(int id)
+        [ActionName("Edit")]
+        public async Task<ActionResult> EditAsync(int id)
         {
-            return View();
+            var result = await _vehicle_model_service.GetVehicleModelAsync(id);
+            ViewBag.VehicleMakes = await NinjectDI.Create<IVehicleMakeService>().GetVehicleMakesAsync();
+
+            return View(result);
         }
 
         // POST: VehicleModel/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        [ActionName("Edit")]
+        public async Task<ActionResult> EditAsync(VehicleModel vehicleModel)
         {
             try
             {
-                // TODO: Add update logic here
+                var result = await _vehicle_model_service.UpdateVehicleModelAsync(vehicleModel);
 
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Index");
             }
             catch
             {
-                return View();
+                return BadRequest(StatusCodes.Status500InternalServerError);
             }
         }
 
         // GET: VehicleModel/Delete/5
-        public ActionResult Delete(int id)
+        [ActionName("Delete")]
+        public async Task<ActionResult> DeleteAsync(int id)
         {
-            return View();
+            var result = await _vehicle_model_service.GetVehicleModelAsync(id);
+
+            return View(result);
         }
 
         // POST: VehicleModel/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        [ActionName("Delete")]
+        public async Task<ActionResult> DeleteAsync(int id, IFormCollection collection)
         {
             try
             {
-                // TODO: Add delete logic here
+                var result = await _vehicle_model_service.RemoveVehicleModelAsync(id);
 
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Index");
             }
             catch
             {
-                return View();
+                return BadRequest(StatusCodes.Status500InternalServerError);
             }
         }
     }

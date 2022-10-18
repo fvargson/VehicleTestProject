@@ -1,12 +1,10 @@
-﻿using AutoMapper;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Ninject.Modules;
-using Project.MVC.Controllers;
 using Project.Service.Classes;
+using Project.Service.Data;
 using Project.Service.Interfaces;
-using Project.Service.Models;
 
-namespace Project.MVC.Models
+namespace Project.Service.Helpers
 {
     public class NinjectService : NinjectModule
     {
@@ -14,7 +12,7 @@ namespace Project.MVC.Models
         {
             Bind<IVehicleModelService>().To<VehicleModelService>();
             Bind<IVehicleMakeService>().To<VehicleMakeService>();
-            Bind<IMapper>().To<Mapper>();
+            Bind<ApplicationDbContext>().To<ApplicationDbContext>();
         }
     }
 }

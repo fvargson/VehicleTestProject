@@ -1,9 +1,9 @@
 ﻿using Ninject;
 using System.Reflection;
 
-namespace Project.MVC.Models
+namespace Project.Service.Helpers
 {
-    static class NinjectDI
+    public static class NinjectDI
     {
         static StandardKernel _kernel;
 

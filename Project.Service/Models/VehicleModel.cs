@@ -13,8 +13,9 @@ namespace Project.Service.Models
         [Key]
         public int Id { get; set; }
         [ForeignKey("MakeId")]
-        public int MakeId { get; set; }
         public VehicleMake VehicleMake { get; set; }
+        public int MakeId { get; set; }
+        
         [Required]
         [Column(TypeName = "varchar(50)")]
         public string Name { get; set; }
