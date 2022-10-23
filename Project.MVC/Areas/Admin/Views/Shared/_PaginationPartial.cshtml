@@ -1,0 +1,47 @@
+﻿@using Project.Service.Models
+
+@{
+    int CurrentPage = (int)ViewData["PageNumber"];
+    int CountPages = (int)ViewData["PageCount"];
+    int PerPage = (int)ViewData["PerPage"];
+    string FilterStrings = (string)ViewData["Filter"];
+    string controllerName = (string)ViewData["ControllerName"];
+    int? MakeFilter = null;
+    @if(ViewData["MakeFilter"] != null)
+    {
+        MakeFilter = (int?)ViewData["MakeFilter"];
+    }
+    int start = CurrentPage - 2;
+    if(start < 1)
+    {
+        start = 1;
+    }
+    int end = start + 4;
+    if(end > CountPages)
+    {
+        end = CountPages;
+    }
+}
+
+<nav aria-label="Page navigation">
+    <ul class="pagination">
+        <li class="page-item">
+            @Html.ActionLink("First", "Index", controllerName, new { page = 1, perPage = PerPage, filterString = FilterStrings, makeFilter = MakeFilter }, new { @class = "page-link" })
+        </li>
+        <li class="page-item">
+            @Html.ActionLink("Previous", "Index", controllerName, new { page = (CurrentPage > 1)? CurrentPage - 1: 1, perPage = PerPage, filterString = FilterStrings, makeFilter = MakeFilter }, new { @class = "page-link" })
+        </li>
+        @for(int i = start; i <= end; i++)
+        {
+            <li class="page-item">
+                @Html.ActionLink(i.ToString(), "Index", controllerName, new { page = i, perPage = PerPage, filterString = FilterStrings, makeFilter = MakeFilter }, new { @class = "page-link" })
+            </li>
+        }
+        <li class="page-item">
+            @Html.ActionLink("Next", "Index", controllerName, new { page = (CurrentPage < CountPages)? CurrentPage + 1: CountPages, perPage = PerPage, filterString = FilterStrings, makeFilter = MakeFilter }, new { @class = "page-link" })
+        </li>
+        <li class="page-item">
+            @Html.ActionLink("Last", "Index", controllerName, new { page = CountPages, perPage = PerPage, filterString = FilterStrings, makeFilter = MakeFilter }, new { @class = "page-link" })
+        </li>
+    </ul>
+</nav>

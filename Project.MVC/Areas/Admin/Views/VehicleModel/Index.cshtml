@@ -2,16 +2,40 @@
 
 @using Project.Service.Helpers
 @using Project.Service.Interfaces
+@using Project.Service.Models
 
 @{
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h1>List of Models</h1>
 
 <p>
     <a asp-action="Create">Create New</a>
 </p>
+
+<div class="pb-2">
+    <form method="get" asp-action="Index" asp-route-page="@ViewData["PageNumber"]" asp-route-perPage="@ViewData["PerPage"]>
+        <label for="filter">Filter by Make:</label>
+        <select id="filter" name="makeFilter" class="form-control" onchange="this.form.submit()">
+            <option value="">All</option>
+            @foreach(var item in ((IEnumerable<VehicleMake>)ViewBag.VehicleMakes).OrderBy(vm => vm.Name))
+            {
+                @if((int)(ViewData["MakeFilter"] ?? 0) == item.Id)
+                {
+                    <option selected value="@item.Id">@item.Name</option>
+                }
+                else
+                {
+                    <option value="@item.Id">@item.Name</option>
+                }
+            }
+        </select>
+    </form>
+</div>
+
+@(await Html.PartialAsync("_PaginationPartial", ViewData))
+
 <table class="table">
     <thead>
         <tr>
@@ -28,7 +52,7 @@
         </tr>
     </thead>
     <tbody>
-    @foreach (var item in Model) 
+    @foreach (var item in Model)
     {
         <tr>
             <td>
@@ -49,3 +73,5 @@
     }
     </tbody>
 </table>
+
+@(await Html.PartialAsync("_PaginationPartial", ViewData))

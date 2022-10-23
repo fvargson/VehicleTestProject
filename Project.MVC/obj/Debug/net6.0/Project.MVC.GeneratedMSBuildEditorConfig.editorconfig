@@ -15,6 +15,10 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = C:\Users\Joka\Source\Repos\fvargson\VehicleTestProject\Project.MVC
 build_property._RazorSourceGeneratorDebug = 
 
+[C:/Users/Joka/Source/Repos/fvargson/VehicleTestProject/Project.MVC/Areas/Admin/Views/Shared/_PaginationPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcU2hhcmVkXF9QYWdpbmF0aW9uUGFydGlhbC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/Joka/Source/Repos/fvargson/VehicleTestProject/Project.MVC/Areas/Admin/Views/VehicleMake/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcVmVoaWNsZU1ha2VcQ3JlYXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 

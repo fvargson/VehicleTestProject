@@ -7,16 +7,19 @@ using System.Threading.Tasks;
 
 namespace Project.Service.Interfaces
 {
+    public enum Sorting
+    {
+        Desc,
+        Asc
+    }
     public interface IVehicleMakeService
     {
+        Task<int> CountVehicleMakeAsync();
         Task<VehicleMake> CreateVehicleMakeAsync(VehicleMake newVehicleMake);
         Task<IEnumerable<VehicleMake>> GetVehicleMakesAsync();
         Task<VehicleMake> GetVehicleMakeAsync(int id);
         Task<VehicleMake> RemoveVehicleMakeAsync(int id);
         Task<VehicleMake> UpdateVehicleMakeAsync(VehicleMake newVehicleMake);
-        Task<List<VehicleMake>> FilterVehicleMakeAsync(List<string> filterStrings);
-        Task<List<VehicleMake>> SortVehicleMakeAsync();
-        Task<List<VehicleMake>> SortDescendingVehicleMakeAsync();
-        Task<List<VehicleMake>> PageVehicleMakeAsync(int page, int perPage);
+        Task<List<VehicleMake>> SortFilterPageMakeAsync(int page, List<string> filterStrings, int perPage = 10, Sorting order = Sorting.Asc);
     }
 }

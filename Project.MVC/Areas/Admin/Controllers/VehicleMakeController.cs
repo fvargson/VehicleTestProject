@@ -22,9 +22,19 @@ namespace Project.MVC.Areas.Admin.Controllers
         }
         // GET: VehicleMake
         [ActionName("Index")]
-        public async Task<ActionResult> IndexAsync()
+        public async Task<ActionResult> IndexAsync(string filterStrings = "", int page = 1, int perPage = 10, Sorting sort = Sorting.Asc)
         {
-            var result = await _vehicle_make_service.GetVehicleMakesAsync();
+            var filteringStrings = new List<string>();
+            if (filterStrings.Trim() != "")
+            {
+                filteringStrings = filterStrings.Trim().Split(' ').ToList();
+            }
+            var result = await _vehicle_make_service.SortFilterPageMakeAsync(page, filteringStrings, perPage, sort);
+            ViewData["PageNumber"] = page;
+            ViewData["PageCount"] = (await _vehicle_make_service.CountVehicleMakeAsync() + perPage - 1) / perPage;
+            ViewData["PerPage"] = perPage;
+            ViewData["Filter"] = filterStrings;
+            ViewData["ControllerName"] = "VehicleMake";
 
             return View("Index", result);
         }

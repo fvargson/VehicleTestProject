@@ -22,9 +22,15 @@ namespace Project.MVC.Areas.Admin.Controllers
         }
         // GET: VehicleModel
         [ActionName("Index")]
-        public async Task<ActionResult> IndexAsync()
+        public async Task<ActionResult> IndexAsync(int? makeFilter, int page = 1, int perPage = 10, Sorting sort = Sorting.Asc)
         {
-            var result = await _vehicle_model_service.GetVehicleModelsAsync();
+            var result = await _vehicle_model_service.SortFilterPageModelAsync(makeFilter, page, perPage, sort);
+            ViewData["PageNumber"] = page;
+            ViewData["PageCount"] = (await _vehicle_model_service.CountVehicleModelByMakeAsync(makeFilter) + perPage - 1) / perPage;
+            ViewData["PerPage"] = perPage;
+            ViewData["MakeFilter"] = makeFilter;
+            ViewData["ControllerName"] = "VehicleModel";
+            ViewBag.VehicleMakes = await NinjectDI.Create<IVehicleMakeService>().GetVehicleMakesAsync();
 
             return View("Index", result);
         }

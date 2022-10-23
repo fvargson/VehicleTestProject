@@ -18,19 +18,19 @@ namespace Project.Service.Classes
             _context = context;
         }
 
+        public async Task<int> CountVehicleMakeAsync()
+        {
+            var result = await _context.VehicleMakes.CountAsync();
+
+            return result;
+        }
+
         public async Task<VehicleMake> CreateVehicleMakeAsync(VehicleMake vehicleMake)
         {
             var addedVehicleModel = await _context.VehicleMakes.AddAsync(vehicleMake);
             await _context.SaveChangesAsync();
 
             return addedVehicleModel.Entity;
-        }
-
-        public async Task<List<VehicleMake>> FilterVehicleMakeAsync(List<string> filterStrings)
-        {
-            var result = await _context.VehicleMakes.Where(vm => filterStrings.Contains(vm.Name) || filterStrings.Contains(vm.Abrv)).ToListAsync();
-
-            return result;
         }
 
         public async Task<VehicleMake> GetVehicleMakeAsync(int id)
@@ -47,13 +47,6 @@ namespace Project.Service.Classes
             return result;
         }
 
-        public async Task<List<VehicleMake>> PageVehicleMakeAsync(int page, int perPage)
-        {
-            var result = await _context.VehicleMakes.Skip((page - 1) * perPage).Take(perPage).ToListAsync();
-
-            return result;
-        }
-
         public async Task<VehicleMake> RemoveVehicleMakeAsync(int id)
         {
             var oldVehicleMake = await GetVehicleMakeAsync(id);
@@ -63,17 +56,12 @@ namespace Project.Service.Classes
             return result.Entity;
         }
 
-        public async Task<List<VehicleMake>> SortDescendingVehicleMakeAsync()
+        public async Task<List<VehicleMake>> SortFilterPageMakeAsync(int page, List<string> filterStrings, int perPage = 10, Sorting order = Sorting.Asc)
         {
-            var result = await _context.VehicleMakes.OrderByDescending(vm => vm.Name).ToListAsync();
-
-            return result;
-        }
-
-        public async Task<List<VehicleMake>> SortVehicleMakeAsync()
-        {
-            var result = await _context.VehicleMakes.OrderBy(vm => vm.Name).ToListAsync();
-
+            var result = 
+                (order == Sorting.Asc)
+                    ? await _context.VehicleMakes.Where(vm => filterStrings.Contains(vm.Name) || filterStrings.Count() == 0).OrderBy(vm => vm.Name).Skip((page - 1) * perPage).Take(perPage).ToListAsync()
+                    : await _context.VehicleMakes.Where(vm => filterStrings.Contains(vm.Name) || filterStrings.Count() == 0).OrderByDescending(vm => vm.Name).Skip((page - 1) * perPage).Take(perPage).ToListAsync();
             return result;
         }
 

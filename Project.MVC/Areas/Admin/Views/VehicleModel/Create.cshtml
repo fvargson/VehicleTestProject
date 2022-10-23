@@ -17,7 +17,7 @@
             <div class="form-group pb-1">
                 <label asp-for="MakeId" class="control-label"></label>
                 <select asp-for="MakeId" class="form-control">
-                    @foreach(var item in (IEnumerable<VehicleMake>)ViewBag.VehicleMakes)
+                    @foreach(var item in ((IEnumerable<VehicleMake>)ViewBag.VehicleMakes).OrderBy(vm => vm.Name))
                     {
                         @if (ViewBag.MakeId != null)
                         {

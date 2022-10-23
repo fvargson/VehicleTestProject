@@ -9,14 +9,12 @@ namespace Project.Service.Interfaces
 {
     public interface IVehicleModelService
     {
+        Task<int> CountVehicleModelByMakeAsync(int? makeId);
         Task<VehicleModel> CreateVehicleModelAsync(VehicleModel vehicleModel);
         Task<IEnumerable<VehicleModel>> GetVehicleModelsAsync();
         Task<VehicleModel> GetVehicleModelAsync(int id);
         Task<VehicleModel> RemoveVehicleModelAsync(int id);
         Task<VehicleModel> UpdateVehicleModelAsync(VehicleModel vehicleModel);
-        Task<List<VehicleModel>> FilterVehicleModelAsync(List<string> filterStrings);
-        Task<List<VehicleModel>> SortVehicleModelAsync();
-        Task<List<VehicleModel>> SortDescendingVehicleModelAsync();
-        Task<List<VehicleModel>> PageVehicleModelAsync(int page, int perPage);
+        Task<List<VehicleModel>> SortFilterPageModelAsync(int? makeFilter, int page, int perPage = 10, Sorting order = Sorting.Asc);
     }
 }
