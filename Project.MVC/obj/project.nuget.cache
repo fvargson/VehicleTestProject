@@ -1,9 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "wqEVeKnNwkkMJgGOaeFN9vbUtdxAq+wJAwGbPUDK8ek9VS0/sKgjzSBqILedrucugQ0hYALChLelh8JXc7jdJg==",
+  "dgSpecHash": "wt0dW4rt8WliZgLG2KQEmNDdajqVG7OCcPRth1I1XDzz73bfEtb5ydEq72jO5IKOU/dTYr2sBY+x16whEfVKTA==",
   "success": true,
   "projectFilePath": "C:\\Users\\Joka\\Source\\Repos\\fvargson\\VehicleTestProject\\Project.MVC\\Project.MVC.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\Joka\\.nuget\\packages\\autofac\\6.4.0\\autofac.6.4.0.nupkg.sha512",
+    "C:\\Users\\Joka\\.nuget\\packages\\autofac.extensions.dependencyinjection\\8.0.0\\autofac.extensions.dependencyinjection.8.0.0.nupkg.sha512",
     "C:\\Users\\Joka\\.nuget\\packages\\automapper\\12.0.0\\automapper.12.0.0.nupkg.sha512",
     "C:\\Users\\Joka\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\12.0.0\\automapper.extensions.microsoft.dependencyinjection.12.0.0.nupkg.sha512",
     "C:\\Users\\Joka\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
@@ -81,7 +83,6 @@
     "C:\\Users\\Joka\\.nuget\\packages\\microsoft.win32.systemevents\\6.0.0\\microsoft.win32.systemevents.6.0.0.nupkg.sha512",
     "C:\\Users\\Joka\\.nuget\\packages\\netstandard.library\\1.6.1\\netstandard.library.1.6.1.nupkg.sha512",
     "C:\\Users\\Joka\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512",
-    "C:\\Users\\Joka\\.nuget\\packages\\ninject\\3.3.6\\ninject.3.3.6.nupkg.sha512",
     "C:\\Users\\Joka\\.nuget\\packages\\nuget.common\\6.2.1\\nuget.common.6.2.1.nupkg.sha512",
     "C:\\Users\\Joka\\.nuget\\packages\\nuget.configuration\\6.2.1\\nuget.configuration.6.2.1.nupkg.sha512",
     "C:\\Users\\Joka\\.nuget\\packages\\nuget.dependencyresolver.core\\5.11.0\\nuget.dependencyresolver.core.5.11.0.nupkg.sha512",

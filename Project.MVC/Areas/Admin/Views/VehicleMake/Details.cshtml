@@ -1,6 +1,4 @@
-@model Project.Service.Models.VehicleMake
-
-@using Project.Service.Models
+@model Project.Service.DTO.VehicleMake.GetVehicleMakeDetailsDto
 
 @{
     ViewData["Title"] = "Details";
@@ -28,7 +26,7 @@
 </div>
 <div>
     <h5>VehicleModels</h5>
-    @if(((IEnumerable<VehicleModel>)ViewBag.VehicleModels).Count() == 0)
+    @if(Model.VehicleModels.Count() == 0)
     {
         <p>There are no models under this make yet, create some @(Html.ActionLink("here", "Create", "VehicleModel", new { MakeId = Model.Id })).</p>
     }
@@ -42,7 +40,7 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach(var item in (IEnumerable<VehicleModel>)ViewBag.VehicleModels)
+                @foreach(var item in Model.VehicleModels)
                 {
                     <tr>
                         <td>@item.Name</td>

@@ -13,7 +13,7 @@ namespace Project.Service.Models
         [Key]
         public int Id { get; set; }
         [ForeignKey("MakeId")]
-        public VehicleMake VehicleMake { get; set; }
+        public virtual VehicleMake VehicleMake { get; set; }
         public int MakeId { get; set; }
         
         [Required]

@@ -1,4 +1,5 @@
-﻿using Project.Service.Models;
+﻿using Project.Service.Helpers;
+using Project.Service.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,6 +16,6 @@ namespace Project.Service.Interfaces
         Task<VehicleModel> GetVehicleModelAsync(int id);
         Task<VehicleModel> RemoveVehicleModelAsync(int id);
         Task<VehicleModel> UpdateVehicleModelAsync(VehicleModel vehicleModel);
-        Task<List<VehicleModel>> SortFilterPageModelAsync(int? makeFilter, int page, int perPage = 10, Sorting order = Sorting.Asc);
+        Task<List<VehicleModel>> SortFilterPageModelAsync(Filtering filtering, Paging paging, Sort sorting);
     }
 }

@@ -1,8 +1,8 @@
-@model IEnumerable<Project.Service.Models.VehicleModel>
+@model IEnumerable<Project.Service.DTO.VehicleModel.GetVehicleModelMakeDto>
 
-@using Project.Service.Helpers
 @using Project.Service.Interfaces
 @using Project.Service.Models
+@using Project.Service.Helpers
 
 @{
     ViewData["Title"] = "Index";
@@ -21,7 +21,7 @@
             <option value="">All</option>
             @foreach(var item in ((IEnumerable<VehicleMake>)ViewBag.VehicleMakes).OrderBy(vm => vm.Name))
             {
-                @if((int)(ViewData["MakeFilter"] ?? 0) == item.Id)
+                @if(((Filtering)ViewData["MakeFilter"]).FilterId == item.Id)
                 {
                     <option selected value="@item.Id">@item.Name</option>
                 }
@@ -40,7 +40,7 @@
     <thead>
         <tr>
             <th>
-                Make
+                @Html.DisplayNameFor(model => model.VehicleMake)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Name)
@@ -56,7 +56,7 @@
     {
         <tr>
             <td>
-                @((await NinjectDI.Create<IVehicleMakeService>().GetVehicleMakeAsync(item.MakeId)).Name)
+                @Html.DisplayFor(modelItem => item.VehicleMake.Name)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Name)

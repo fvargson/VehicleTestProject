@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Project.Service.Data;
+using Project.Service.Helpers;
 using Project.Service.Interfaces;
 using Project.Service.Models;
 using System;
@@ -47,21 +48,39 @@ namespace Project.Service.Classes
             return result;
         }
 
+        public async Task<VehicleMake> GetVehicleMakeModelsAsync(int id)
+        {
+            var result = await _context.VehicleMakes.Where(vm => vm.Id == id).Include(vm => vm.VehicleModels).SingleOrDefaultAsync();
+
+            return result;
+        }
+
         public async Task<VehicleMake> RemoveVehicleMakeAsync(int id)
         {
             var oldVehicleMake = await GetVehicleMakeAsync(id);
             var result = _context.VehicleMakes.Remove(oldVehicleMake);
+
             await _context.SaveChangesAsync();
 
             return result.Entity;
         }
 
-        public async Task<List<VehicleMake>> SortFilterPageMakeAsync(int page, List<string> filterStrings, int perPage = 10, Sorting order = Sorting.Asc)
+        public async Task<List<VehicleMake>> SortFilterPageMakeAsync(Paging paging, Sort sorting)
         {
             var result = 
-                (order == Sorting.Asc)
-                    ? await _context.VehicleMakes.Where(vm => filterStrings.Contains(vm.Name) || filterStrings.Count() == 0).OrderBy(vm => vm.Name).Skip((page - 1) * perPage).Take(perPage).ToListAsync()
-                    : await _context.VehicleMakes.Where(vm => filterStrings.Contains(vm.Name) || filterStrings.Count() == 0).OrderByDescending(vm => vm.Name).Skip((page - 1) * perPage).Take(perPage).ToListAsync();
+                (sorting.Sorting == Sorting.Asc)
+                    ? await _context
+                                .VehicleMakes
+                                .OrderBy(vm => vm.Name)
+                                .Skip((paging.CurrentPage - 1) * paging.PerPage)
+                                .Take(paging.PerPage)
+                                .ToListAsync()
+                    : await _context
+                                .VehicleMakes
+                                .OrderByDescending(vm => vm.Name)
+                                .Skip((paging.CurrentPage - 1) * paging.PerPage)
+                                .Take(paging.PerPage)
+                                .ToListAsync();
             return result;
         }
 

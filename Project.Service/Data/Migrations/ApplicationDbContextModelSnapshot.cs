@@ -242,7 +242,7 @@ namespace Project.MVC.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("VehicleMakes");
+                    b.ToTable("VehicleMakes", (string)null);
                 });
 
             modelBuilder.Entity("Project.Service.Models.VehicleModel", b =>
@@ -268,7 +268,7 @@ namespace Project.MVC.Data.Migrations
 
                     b.HasIndex("MakeId");
 
-                    b.ToTable("VehicleModels");
+                    b.ToTable("VehicleModels", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Project.Service.Helpers;
 
 namespace Project.Service.Classes
 {
@@ -20,7 +21,7 @@ namespace Project.Service.Classes
 
         public async Task<int> CountVehicleModelByMakeAsync(int? makeId)
         {
-            var result = await _context.VehicleModels.Where(vm => (makeId != null)? vm.MakeId == makeId: true).CountAsync();
+            var result = await _context.VehicleModels.Where(vm => (makeId != 0)? vm.MakeId == makeId: true).CountAsync();
 
             return result;
         }
@@ -34,7 +35,7 @@ namespace Project.Service.Classes
 
         public async Task<VehicleModel> GetVehicleModelAsync(int id)
         {
-            var result = await _context.VehicleModels.SingleOrDefaultAsync(vm => vm.Id == id);
+            var result = await _context.VehicleModels.Where(vm => vm.Id == id).Include(vm => vm.VehicleMake).SingleOrDefaultAsync();
 
             return result;
         }
@@ -55,12 +56,26 @@ namespace Project.Service.Classes
             return result.Entity;
         }
 
-        public async Task<List<VehicleModel>> SortFilterPageModelAsync(int? makeFilter, int page, int perPage = 10, Sorting order = Sorting.Asc)
+        public async Task<List<VehicleModel>> SortFilterPageModelAsync(Filtering filtering, Paging paging, Sort sorting)
         {
             var result =
-                (order == Sorting.Asc)
-                    ? await _context.VehicleModels.Where(vm => (makeFilter == null)? true: vm.MakeId == makeFilter).OrderBy(vm => vm.Name).Skip((page - 1) * perPage).Take(perPage).ToListAsync()
-                    : await _context.VehicleModels.Where(vm => (makeFilter == null) ? true : vm.MakeId == makeFilter).OrderByDescending(vm => vm.Name).Skip((page - 1) * perPage).Take(perPage).ToListAsync();
+                (sorting.Sorting == Sorting.Asc)
+                    ? await _context
+                                .VehicleModels
+                                .Where(vm => (filtering.FilterId == 0)? true: vm.MakeId == filtering.FilterId)
+                                .OrderBy(vm => vm.Name)
+                                .Skip((paging.CurrentPage - 1) * paging.PerPage)
+                                .Take(paging.PerPage)
+                                .Include(_ => _.VehicleMake)
+                                .ToListAsync()
+                    : await _context
+                                .VehicleModels
+                                .Where(vm => (filtering.FilterId == 0)? true : vm.MakeId == filtering.FilterId)
+                                .OrderByDescending(vm => vm.Name)
+                                .Skip((paging.CurrentPage - 1) * paging.PerPage)
+                                .Take(paging.PerPage)
+                                .Include(_ => _.VehicleMake)
+                                .ToListAsync();
             return result;
         }
 

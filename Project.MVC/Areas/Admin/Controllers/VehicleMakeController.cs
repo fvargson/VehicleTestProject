@@ -5,9 +5,11 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
-using Project.Service.Helpers;
 using Project.Service.Interfaces;
 using Project.Service.Models;
+using AutoMapper;
+using Project.Service.DTO.VehicleMake;
+using Project.Service.Helpers;
 
 namespace Project.MVC.Areas.Admin.Controllers
 {
@@ -15,26 +17,33 @@ namespace Project.MVC.Areas.Admin.Controllers
     [Authorize(Roles = "Admin")]
     public class VehicleMakeController : Controller
     {
+        private readonly IMapper _mapper;
         private readonly IVehicleMakeService _vehicle_make_service;
-        public VehicleMakeController()
+        public VehicleMakeController(IMapper mapper, IVehicleMakeService vehicleMakeService)
         {
-            _vehicle_make_service = NinjectDI.Create<IVehicleMakeService>();
+            _mapper = mapper;
+            _vehicle_make_service = vehicleMakeService;
         }
         // GET: VehicleMake
         [ActionName("Index")]
-        public async Task<ActionResult> IndexAsync(string filterStrings = "", int page = 1, int perPage = 10, Sorting sort = Sorting.Asc)
+        public async Task<ActionResult> IndexAsync(int page = 1, int perPage = 10, Sorting sort = Sorting.Asc)
         {
-            var filteringStrings = new List<string>();
-            if (filterStrings.Trim() != "")
-            {
-                filteringStrings = filterStrings.Trim().Split(' ').ToList();
-            }
-            var result = await _vehicle_make_service.SortFilterPageMakeAsync(page, filteringStrings, perPage, sort);
-            ViewData["PageNumber"] = page;
-            ViewData["PageCount"] = (await _vehicle_make_service.CountVehicleMakeAsync() + perPage - 1) / perPage;
-            ViewData["PerPage"] = perPage;
-            ViewData["Filter"] = filterStrings;
+            Sort sorting = new Sort() {
+                Sorting = sort 
+            };
+            Paging paging = new Paging() { 
+                PerPage = perPage, 
+                CurrentPage = page, 
+                Total = (await _vehicle_make_service.CountVehicleMakeAsync() + perPage - 1) / perPage 
+            };
+            
+            var vehicleMakes = await _vehicle_make_service.SortFilterPageMakeAsync(paging, sorting);
+            
+            ViewData["Paging"] = paging;
+            
             ViewData["ControllerName"] = "VehicleMake";
+
+            var result = _mapper.Map<List<VehicleMake>, List<GetVehicleMakeDto>>(vehicleMakes);
 
             return View("Index", result);
         }
@@ -43,11 +52,9 @@ namespace Project.MVC.Areas.Admin.Controllers
         [ActionName("Details")]
         public async Task<ActionResult> DetailsAsync(int id)
         {
-            var result = await _vehicle_make_service.GetVehicleMakeAsync(id);
-            var vehicleModels = await NinjectDI.Create<IVehicleModelService>().GetVehicleModelsAsync();
-            var vehicleModelsResult = vehicleModels.Where(vm => vm.MakeId == id).ToList();
+            var vehicleMakeModels = await _vehicle_make_service.GetVehicleMakeModelsAsync(id);
 
-            ViewBag.VehicleModels = vehicleModelsResult;
+            var result = _mapper.Map<VehicleMake, GetVehicleMakeDetailsDto>(vehicleMakeModels);
 
             return View("Details", result);
         }
@@ -81,7 +88,9 @@ namespace Project.MVC.Areas.Admin.Controllers
         [ActionName("Edit")]
         public async Task<ActionResult> EditAsync(int id)
         {
-            var result = await _vehicle_make_service.GetVehicleMakeAsync(id);
+            var vehicleMake = await _vehicle_make_service.GetVehicleMakeAsync(id);
+
+            var result = _mapper.Map<VehicleMake, GetVehicleMakeDto>(vehicleMake);
 
             return View(result);
         }
@@ -108,7 +117,9 @@ namespace Project.MVC.Areas.Admin.Controllers
         [ActionName("Delete")]
         public async Task<ActionResult> DeleteAsync(int id)
         {
-            var result = await _vehicle_make_service.GetVehicleMakeAsync(id);
+            var vehicleMake = await _vehicle_make_service.GetVehicleMakeAsync(id);
+
+            var result = _mapper.Map<VehicleMake, GetVehicleMakeDto>(vehicleMake);
 
             return View(result);
         }

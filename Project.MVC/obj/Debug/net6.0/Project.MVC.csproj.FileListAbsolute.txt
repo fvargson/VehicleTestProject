@@ -136,7 +136,6 @@ C:\Users\Joka\Source\Repos\fvargson\VehicleTestProject\Project.MVC\bin\Debug\net
 C:\Users\Joka\Source\Repos\fvargson\VehicleTestProject\Project.MVC\bin\Debug\net6.0\Microsoft.VisualStudio.Web.CodeGenerators.Mvc.dll
 C:\Users\Joka\Source\Repos\fvargson\VehicleTestProject\Project.MVC\bin\Debug\net6.0\Microsoft.Win32.SystemEvents.dll
 C:\Users\Joka\Source\Repos\fvargson\VehicleTestProject\Project.MVC\bin\Debug\net6.0\Newtonsoft.Json.dll
-C:\Users\Joka\Source\Repos\fvargson\VehicleTestProject\Project.MVC\bin\Debug\net6.0\Ninject.dll
 C:\Users\Joka\Source\Repos\fvargson\VehicleTestProject\Project.MVC\bin\Debug\net6.0\NuGet.Common.dll
 C:\Users\Joka\Source\Repos\fvargson\VehicleTestProject\Project.MVC\bin\Debug\net6.0\NuGet.Configuration.dll
 C:\Users\Joka\Source\Repos\fvargson\VehicleTestProject\Project.MVC\bin\Debug\net6.0\NuGet.DependencyResolver.Core.dll
@@ -348,3 +347,5 @@ C:\Users\Joka\Source\Repos\fvargson\VehicleTestProject\Project.MVC\obj\Debug\net
 C:\Users\Joka\Source\Repos\fvargson\VehicleTestProject\Project.MVC\obj\Debug\net6.0\Project.MVC.pdb
 C:\Users\Joka\Source\Repos\fvargson\VehicleTestProject\Project.MVC\obj\Debug\net6.0\Project.MVC.genruntimeconfig.cache
 C:\Users\Joka\Source\Repos\fvargson\VehicleTestProject\Project.MVC\obj\Debug\net6.0\ref\Project.MVC.dll
+C:\Users\Joka\Source\Repos\fvargson\VehicleTestProject\Project.MVC\bin\Debug\net6.0\Autofac.dll
+C:\Users\Joka\Source\Repos\fvargson\VehicleTestProject\Project.MVC\bin\Debug\net6.0\Autofac.Extensions.DependencyInjection.dll
